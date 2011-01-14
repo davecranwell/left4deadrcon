@@ -53,25 +53,14 @@ class RCon {
 		//format global server info
 		$line = explode("\n", $status);
 
-		if ($this->_Game == 'left4dead') {
-			$result["hostname"] = trim(substr($line[0], strpos($line[0], ":") + 1));
-			$result['map'] = trim(substr($line[3], strpos($line[3], ":") + 1));
-			$result['players'] = trim(substr($line[4], strpos($line[4], ":") + 1));
-			$ip = explode(" ", trim(substr($line[2], strpos($line[2], ":") + 1)));
+		$result["hostname"] = trim(substr($line[0], strpos($line[0], ":") + 1));
+		$result['map'] = trim(substr($line[4], strpos($line[4], ":") + 1));
+		$result['players'] = trim(substr($line[5], strpos($line[5], ":") + 1));
+		$ip = explode(" ", trim(substr($line[2], strpos($line[2], ":") + 1)));
 
-			$result['ip'] =$ip[0];
-			$playerInfo = explode(" ", $result['players']);
-			$result['playercount'] = $playerInfo[0];
-		} else if ($this->_Game == 'left4dead2') {
-			$result["hostname"] = trim(substr($line[0], strpos($line[0], ":") + 1));
-			$result['map'] = trim(substr($line[4], strpos($line[4], ":") + 1));
-			$result['players'] = trim(substr($line[5], strpos($line[5], ":") + 1));
-			$ip = explode(" ", trim(substr($line[2], strpos($line[2], ":") + 1)));
-
-			$result['ip'] =$ip[0];
-			$playerInfo = explode(" ", $result['players']);
-			$result['playercount'] = $playerInfo[0];
-		}
+		$result['ip'] =$ip[0];
+		$playerInfo = explode(" ", $result['players']);
+		$result['playercount'] = $playerInfo[0];
 
 		//nasty extra line as this isn't by default included in the l4d status
 		$result['difficulty']=$this->parseSetting($this->rconCommand("z_difficulty"));
