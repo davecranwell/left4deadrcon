@@ -64,8 +64,8 @@ class RCon {
 			$result['playercount'] = $playerInfo[0];
 		} else if ($this->_Game == 'left4dead2') {
 			$result["hostname"] = trim(substr($line[0], strpos($line[0], ":") + 1));
-			$result['map'] = trim(substr($line[4], strpos($line[3], ":") + 1));
-			$result['players'] = trim(substr($line[5], strpos($line[4], ":") + 1));
+			$result['map'] = trim(substr($line[4], strpos($line[4], ":") + 1));
+			$result['players'] = trim(substr($line[5], strpos($line[5], ":") + 1));
 			$ip = explode(" ", trim(substr($line[2], strpos($line[2], ":") + 1)));
 
 			$result['ip'] =$ip[0];
