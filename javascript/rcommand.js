@@ -76,9 +76,14 @@ function updateServerStatus(){
 		
 		//populate user table
 		$('#playerlist tbody').empty();
-		$.each(data.playerinfo, function(i,player){
-			$('#playerlist tbody').append('<tr><td>'+ player.id+'</td><td>'+ player.name+'</td><td>'+ player.uniqid+'</td><td>'+ player.connected+'</td><td>'+ player.ping+'</td><td>'+ player.state+'</td><td>'+ player.ip+'</td></tr>');
-		});
+		if(data.playerinfo.length){
+			$.each(data.playerinfo, function(i,player){
+				$('#playerlist tbody').append('<tr><td>'+ player.id+'</td><td>'+ player.name+'</td><td>'+ player.uniqid+'</td><td>'+ player.connected+'</td><td>'+ player.ping+'</td><td>'+ player.state+'</td><td>'+ player.ip+'</td></tr>');
+			});
+		}else{
+			$('#playerlist tbody').append('<tr><td colspan="7">No players connected</td></tr>');
+			$('#playerlist tbody tr td').css('text-align', 'center');
+		}
 	});
 }
 
